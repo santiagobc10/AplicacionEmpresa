@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "FilteringAPI";
+}
+
+<h2>FilteringAPI</h2>
+
+@(Html.DevExtreme().DataGrid<AplicacionEmpresa.Models.Cliente>()
+    .DataSource(d => d.Mvc()
+        .Controller("Cliente")
+        .LoadAction("DataFilterinAPI")
+        .Key("Id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.Id);
+        columns.AddFor(m => m.Nombre);
+        columns.AddFor(m => m.Estado);
+
+    })
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(f => f.Visible(true))
+    .GroupPanel(p => p.Visible(true))
+    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+    .Height(600)
+    .ShowBorders(true)
+    .Grouping(g => g.AutoExpandAll(false))
+)

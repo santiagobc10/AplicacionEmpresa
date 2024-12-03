@@ -1,0 +1,32 @@
+﻿@model AplicacionEmpresa.ViewModels.Cliente.ClienteVModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<!--  Crea la tabla con el listado de clientes -->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model.Clientes)
+        {
+            <tr>
+                <td>@cliente.Id</td>
+                <td>@cliente.Nombre</td>
+                <td>@cliente.Estado</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section ScriptsView {
+    <script src="~/Scripts/App/Clientes/Clientes.js"></script>
+    <script>$(function () { Clientes($.parseJSON(`@Html.ToJson(Model)`)).Index(); })</script>
+}
+
